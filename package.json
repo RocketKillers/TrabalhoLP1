@@ -1,0 +1,27 @@
+{
+  "name": "trabalholp1",
+  "version": "1.0.0",
+  "description": "trabalho segundo bimestre lp bcc 2025",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jorge, Paulo, Willian",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0",
+    "express-session": "^1.18.1",
+    "json-server": "^1.0.0-beta.3",
+    "nodemon": "^3.1.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RocketKillers/TrabalhoLP1.git"
+  },
+  "bugs": {
+    "url": "https://github.com/RocketKillers/TrabalhoLP1/issues"
+  },
+  "homepage": "https://github.com/RocketKillers/TrabalhoLP1#readme"
+}
