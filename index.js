@@ -5,11 +5,11 @@ import express from 'express'; // "type": "module"
 // const express = require("express"); "type": "commonjs"
 import session from 'express-session'
 import verificarAutenticacao from "./seguranca/autenticacao.js";
-
+//aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+// a    
 const host = "0.0.0.0";
 const porta = 3000;
 const app = express(); // app web passa a ouvir a porta 3000
-
 // Possibilitando a comunicação com estado (stateful)
 
 app.use(session({
