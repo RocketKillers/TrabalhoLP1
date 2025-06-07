@@ -72,7 +72,7 @@ function obterFornecedor(){
 }
 
 function manipularSubmissaoProd(evento){
-    if(formulario.checkValidity()){
+    if(formularioP.checkValidity()){
         const nomeProd = document.getElementById("nomeProd").value;
         const categoria = document.getElementById("categoria").value;
         const fornecedor = document.getElementById("fornecedor").value;
@@ -82,11 +82,11 @@ function manipularSubmissaoProd(evento){
         const codigo = document.getElementById("codigo").value;
         const produto = {nomeProd,categoria,fornecedor,dataFab,dataVal,preco,codigo};
         cadastrarProduto(produto);
-        formulario.reset();
+        formularioP.reset();
         mostrarTabelaProdutos();
     }
     else{
-        formulario.classList.add('was-validated');
+        formularioP.classList.add('was-validated');
     }
     evento.preventDefault();
     evento.stopPropagation();
