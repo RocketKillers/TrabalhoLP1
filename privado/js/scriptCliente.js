@@ -73,7 +73,6 @@ function mostrarTabelaClientes(){
         }
         tabela.appendChild(corpo);
         divTabela.appendChild(tabela);
-
     }
 }
 
@@ -134,7 +133,7 @@ function cadastrarCliente(cliente){
     })
     .then((dados) =>{
         alert(`Cliente incluído com sucesso! ID:${dados.id}`);
-        listaDeClientes.push(cliente);
+        listaDeClientes.push(dados);
         mostrarTabelaClientes();
     })
     .catch((erro)=>{
