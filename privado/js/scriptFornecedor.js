@@ -1,23 +1,16 @@
 const urlBaseForn = 'http://localhost:4000/fornecedores';
 
-const formulario = document.getElementById("formCadForn");
+const formularioF = document.getElementById("formCadForn");
 let listaDeFornecedores = [];
-
-//placeholder (substituir pelo vetor de objeto no scriptCategoria depois)
-let listaDeCategorias = [
-    { nomeCat:"Categoria 1" }, 
-    { nomeCat:"Categoria 2" },
-    { nomeCat:"Categoria 3" }
-];
 
 if(localStorage.getItem("fornecedores")){
     listaDeFornecedores=JSON.parse(localStorage.getItem("fornecedores"));
 }
 
-formulario.onsubmit=manipularSubmissaoForn;
+formularioF.onsubmit=manipularSubmissaoForn;
 
 function manipularSubmissaoForn(evento){
-    if(formulario.checkValidity()){
+    if(formularioF.checkValidity()){
         const nomeForn = document.getElementById("nomeForn").value;
         const cnpj = document.getElementById("cnpj").value;
         const telefoneForn = document.getElementById("telefoneForn").value;
@@ -26,11 +19,11 @@ function manipularSubmissaoForn(evento){
         const pagamento = document.getElementById("pagamento").value;
         const fornecedor = {nomeForn,cnpj,telefoneForn,logradouro,numero,pagamento};
         cadastrarFornecedor(fornecedor);
-        formulario.reset();
+        formularioF.reset();
         mostrarTabelaFornecedores();
     }
     else{
-        formulario.classList.add('was-validated');
+        formularioF.classList.add('was-validated');
     }
     evento.preventDefault();
     evento.stopPropagation();
