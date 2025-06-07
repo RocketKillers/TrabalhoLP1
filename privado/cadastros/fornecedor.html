@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Fornecedores</title>
+    <link rel="stylesheet" href="../../publico/css/bootstrap.min.css"/>
+</head>
+<body>
+    <div class="container">
+        <div class="alert alert-secondary text-center mt-5">
+            <h1>Cadastro de Fornecedores</h1>
+        </div>
+        <form id="formCadForn" action="#" method="POST" class="row g-3 needs-validation border m-1 p-2" novalidate>
+            <div class="col-md-4">
+                <label for="nomeForn" class="form-label">Nome</label>
+                <input type="text" class="form-control" id="nomeForn" required>
+                <div class="invalid-feedback">
+                    Informe o nome.
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="cnpj" class="form-label">CNPJ</label>
+                <input type="text" class="form-control" id="cnpj" required>
+                <div class="invalid-feedback">
+                    Informe o CNPJ.
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="validationCustomUsername" class="form-label">Telefone</label>
+                <div class="input-group has-validation">
+                    <span class="input-group-text" id="inputGroupPrepend">📞</span>
+                    <input type="text" class="form-control" id="telefoneForn">
+                    <div class="invalid-feedback">
+                        Informe o telefone.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="logradouro" class="form-label">Logradouro</label>
+                <input type="text" class="form-control" id="logradouro" required>
+                <div class="invalid-feedback">
+                    Informe o logradouro.
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label for="numero" class="form-label">Número</label>
+                <input type="text" class="form-control" id="numero" required>
+                <div class="invalid-feedback">
+                    Informe o número do estabelecimento.
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label for="pagamento" class="form-label">Formas de pagamento</label>
+                <select class="form-select" id="pagamento" required>
+                    <option selected disabled value="">Escolha uma forma de pagamento</option>
+                    <option value="Somente boleto">Somente boleto</option>
+                    <option value="Somente cartão">Somente cartão</option>
+                    <option value="Somente PIX">Somente PIX</option>
+                    <option value="Boleto e cartão">Boleto e cartão</option>
+                    <option value="Boleto e PIX">Boleto e PIX</option>
+                    <option value="Cartão e PIX">Cartão e PIX</option>
+                    <option value="Qualquer">Qualquer</option>
+                </select>
+            </div>
+
+            <div class="col-12 text-center">
+                <button class="btn btn-primary" type="submit">Cadastrar</button>
+                <a href="../../publico/index.html" class="btn btn-secondary">Voltar</a>
+            </div>
+        </form>
+        <div id="tabelaForn">
+
+        </div>
+    </div>
+</body>
+<script src='../../publico/js/bootstrap.bundle.min.js'></script>
+<script src="../js/scriptCategoria.js"></script>
+<script src="../js/scriptFornecedor.js"></script>
+</html>
