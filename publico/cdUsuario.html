@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="pt-br"> 
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <title>Cadastro de Usuário</title>
+</head>
+<body>
+    <div class="container">
+        <div class="alert alert-secondary text-center mt-5">
+            <h1>Cadastro de Usuário</h1>
+        </div>
+        <form id="formCadUsuario" action="" method="POST" class="row g-3 needs-validation border m-1 p-2" novalidate>
+            <div class="col-md-4">
+                <label for="nomeUsuario" class="form-label">Nome:</label>
+                <input type="text" class="form-control" id="nomeUsuario" required>
+                <div class="invalid-feedback">
+                    Por favor, informe o nome!
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="usuario" class="form-label">Usuário:</label>
+                <input type="text" class="form-control" id="usuario" required>
+                <div class="invalid-feedback">
+                    Por favor, informe o usuário!
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="senha" class="form-label">Senha:</label>
+                <input type="password" class="form-control" id="senha" required>
+                <div class="invalid-feedback">
+                    Por favor, informe a senha!
+                </div>
+                <br>
+            <div class="col-12 text-center">
+                <button class="btn btn-primary" type="submit">Cadastrar</button>
+                <a href="login.html" class="btn btn-secondary">Voltar</a>
+            </div>
+        </form>
+        <div id="tabela">
+            
+        </div>
+    </div>
+
+</body>
+<script src='/publico/js/bootstrap.bundle.min.js'></script>
+<script src="/publico/js/scriptUsuario.js"></script>
+</html>
