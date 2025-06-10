@@ -1,3 +1,9 @@
+//npm install express-session
+//npm install express
+//npm install json-server
+//npm install nodemon 
+//json-server -p 4000 --watch db/dados.js
+
 // npm init e posteriormente adicionar "type": "module" em package.json e o script "start" : "index.js"
 // npm install express
 
@@ -29,62 +35,87 @@ app.use(express.urlencoded({extended: true})); // midware
 // compartilhando publicamente os arquivos existentes na pasta "publico"
 app.use(express.static("publico")); // assets ou conteúdo estático
 
+const urlBase = 'http://localhost:4000/usuarios';
+let listaDeUsuarios = []; 
+function obterDadosUsuarios(){
+    //enviar uma requisição para a fonte servidora
+    fetch(urlBase, {
+        method:"GET"
+    })
+    .then((resposta)=>{
+        if (resposta.ok){
+            return resposta.json();
+        }
+    })
+    .then((Usuarios)=>{
+        listaDeUsuarios=Usuarios;
+    })
+    .catch((erro)=>{
+        console.error("Erro ao tentar recuperar Usuarios do servidor!", erro);
+    });
+}
+obterDadosUsuarios()
 app.post("/login", (requisicao, resposta) => {
-    // desestruturação javascript
-    const {usuario, senha} = requisicao.body;
-    if (usuario === "admin" && senha === "admin") {
-        requisicao.session.autenticado = true;
-        resposta.redirect("/menu.html");
-    } else {
-        let conteudo = `
-            <!DOCTYPE html>
-            <html lang="pt-br">
-    
-                <head>
-                <meta charset="UTF-8">
-                <title>Login</title>
-                <link rel="stylesheet" href="css/bootstrap.min.css">
-                <link rel="stylesheet" href="css/login.css">
-                </head>
-    
-                <body>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-6 offset-md-3">
-                                <h2 class="text-center text-dark mt-5">Bem-vindo</h2>
-                                <div class="text-center mb-5 text-dark">Faça o login</div>
-                                <div class="card my-5">
-                                    <form class="card-body cardbody-color p-lg-5" action="/login" method="post">
-                                        <div class="text-center">
-                                            <img src="/imagens/user_icon.png"
-                                                 class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
-                                                 width="200px" alt="profile">
-                                        </div>
-                                        <div class="mb-3">
-                                            <input type="text" class="form-control" id="usuario" value="${usuario}" name="usuario"
-                                                   aria-describedby="emailHelp"
-                                                   placeholder="Usuário">
-                                        </div>
-                                        <div class="mb-3">
-                                            <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha">
-                                        </div>
-                                        <div class="text-center">
-                                            <button type="submit" class="btn btn-color px-5 mb-5 w-100">Login</button>
-                                        </div>
-                                        <div class="alert alert-danger">Usuário ou senha incorretos!</div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </body>
-    
-            </html>
-        `;
-        resposta.send(conteudo);
-        resposta.end();
+    const { usuario, senha } = requisicao.body;
+    for (let i = 0; i < listaDeUsuarios.length; i++) {
+        if (usuario === listaDeUsuarios[i].usuario && senha === listaDeUsuarios[i].senha) {
+            requisicao.session.autenticado = true;
+            return resposta.redirect("/menu.html");
+        }
     }
+
+    let conteudo = `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/login.css"/>
+        <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+        <title>Página de login</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h2 class="text-center text-dark mt-5">Bem-vindo</h2>
+                <div class="text-center mb-5 text-dark">Faça o login</div>
+                <div class="card my-5">
+        
+                <form action="/login" method="POST" class="card-body cardbody-color p-lg-5">
+        
+                    <div class="text-center">
+                    <img src="/imagens/user_icon.png" class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
+                        width="200px" alt="profile">
+                    </div>
+        
+                    <div class="mb-3">
+                    <input type="text" class="form-control" id="usuario" name="usuario" aria-describedby="emailHelp"
+                        placeholder="usuário">
+                    </div>
+                    <div class="mb-3">
+                    <input type="password" class="form-control" id="senha" name="senha" placeholder="senha">
+                    </div>
+                    <div class="text-center mb-5 text-dark">
+                    <p>Não tem uma conta? <a href="cdUsuario.html">Cadastre-se</a></p>
+                    </div>
+                    <div class="text-center"><button type="submit" class="btn btn-color px-5 mb-5 w-100">Login</button>
+                    <a href="index.html" class="btn btn-secondary">Voltar</a>
+                    </div><br>
+                    <div class="alert alert-danger">Usuário ou senha incorretos!</div>
+                </form>
+                </div>
+        
+            </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    `;
+    resposta.send(conteudo);
+    resposta.end();
 });
+    
 
 // compartilhando conteúdo privado mediante autenticação
 app.use(verificarAutenticacao, express.static("privado"));
