@@ -1,28 +1,31 @@
-function carregarProdutos(){
-    fetch('https://fakestoreapi.com/products',{
-        method:"GET"
-    }).then((resposta) =>{
-        if (resposta.ok){
+function carregarProdutos() {
+    fetch('http://localhost:4000/produtos', {
+        method: "GET"
+    })
+    .then((resposta) => {
+        if (resposta.ok) {
             return resposta.json();
         }
-    }).then((listaDeProdutos) => {
+    })
+    .then((listaDeProdutos) => {
         const divVitrine = document.getElementById("vitrine");
-        for (const produto of listaDeProdutos){
+        divVitrine.innerHTML = "";
+
+        for (const produto of listaDeProdutos) {
             let card = document.createElement('div');
-            card.innerHTML=`
-            <div class="card" style="width: 18rem;">
-                <img width="150px" height="250px" src="${produto.image}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">${produto.title}</h5>
-                    <p class="card-text">${produto.price}</p>
-                    <a href="#" class="btn btn-primary">Comprar</a>
-                </div>
+            card.className = 'card';  // só a classe card, o grid já define a coluna
+            card.innerHTML = `
+            <div class="card-body d-flex flex-column align-items-center">
+                <h5 class="card-title">${produto.nomeProd}</h5>
+                <p class="card-text">Preço: R$ ${produto.preco}</p>
+                <a href="#" class="btn btn-primary mt-auto">Comprar</a>
             </div>
             `;
             divVitrine.appendChild(card);
         }
-    }).catch((erro)=>{
-        alert("Não foi possível carregar os produtos para a vitrine:" + erro);
+    })
+    .catch((erro) => {
+        alert("Não foi possível carregar os produtos para a vitrine: " + erro);
     });
 }
 
