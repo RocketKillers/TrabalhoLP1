@@ -97,7 +97,7 @@ app.post("/login", (requisicao, resposta) => {
                     <input type="password" class="form-control" id="senha" name="senha" placeholder="senha">
                     </div>
                     <div class="text-center mb-5 text-dark">
-                    <p>Não tem uma conta? <a href="cdUsuario.html">Cadastre-se</a></p>
+                    <p>Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
                     </div>
                     <div class="text-center"><button type="submit" class="btn btn-color px-5 mb-5 w-100">Login</button>
                     <a href="index.html" class="btn btn-secondary">Voltar</a>
